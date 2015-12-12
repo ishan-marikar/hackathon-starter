@@ -1,12 +1,12 @@
 ![Alt](https://lh4.googleusercontent.com/-PVw-ZUM9vV8/UuWeH51os0I/AAAAAAAAD6M/0Ikg7viJftQ/w1286-h566-no/hackathon-starter-logo.jpg)
-Hackathon Starter [![Dependency Status](https://david-dm.org/sahat/hackathon-starter/status.svg?style=flat)](https://david-dm.org/sahat/hackathon-starter) [![Build Status](http://img.shields.io/travis/sahat/hackathon-starter.svg?style=flat)](https://travis-ci.org/sahat/hackathon-starter) [![Analytics](https://ga-beacon.appspot.com/UA-47447818-2/hackathon-starter?pixel)](https://github.com/igrigorik/ga-beacon)
+Hackathon Starter [![Dependency Status](https://david-dm.org/sahat/hackathon-starter/status.svg?style=flat)](https://david-dm.org/sahat/hackathon-starter) [![Build Status](https://img.shields.io/travis/sahat/hackathon-starter.svg?style=flat)](https://travis-ci.org/sahat/hackathon-starter) [![Analytics](https://ga-beacon.appspot.com/UA-47447818-2/hackathon-starter?pixel)](https://github.com/igrigorik/ga-beacon)
 =======================
 
 [![Join the chat at https://gitter.im/sahat/hackathon-starter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/sahat/hackathon-starter?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Thinkful Pair on Node](https://tf-assets-staging.s3.amazonaws.com/badges/thinkful_repo_badge.svg)](http://start.thinkful.com/node/)
 
 **Live Demo**: http://hackathonstarter.herokuapp.com
 
-Jump to [What's new in 3.0.3?](#changelog)
+Jump to [What's new in 3.2.0?](#changelog)
 
 A boilerplate for **Node.js** web applications.
 
@@ -72,9 +72,8 @@ Features
 - Flash notifications
 - MVC Project Structure
 - Node.js clusters support
-- Rails 3.1-style asset pipeline by connect-assets (See FAQ)
-- LESS stylesheets (auto-compiled without any Gulp/Grunt hassle)
-- Bootstrap 3 + Flat UI + iOS7
+- Sass stylesheets (auto-compiled via middleware)
+- Bootstrap 3 + Extra Themes
 - Contact Form (powered by Mailgun, Sendgrid or Mandrill)
 - **Account Management**
  - Gravatar
@@ -90,17 +89,17 @@ Features
 Prerequisites
 -------------
 
-- [MongoDB](http://www.mongodb.org/downloads)
+- [MongoDB](https://www.mongodb.org/downloads)
 - [Node.js](http://nodejs.org)
 - Command Line Tools
- - <img src="http://deluge-torrent.org/images/apple-logo.gif" height="17">&nbsp;**Mac OS X**: [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) (or **OS X 10.9 Mavericks**: `xcode-select --install`)
- - <img src="http://dc942d419843af05523b-ff74ae13537a01be6cfec5927837dcfe.r14.cf1.rackcdn.com/wp-content/uploads/windows-8-50x50.jpg" height="17">&nbsp;**Windows**: [Visual Studio](http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-windows-8)
- - <img src="https://lh5.googleusercontent.com/-2YS1ceHWyys/AAAAAAAAAAI/AAAAAAAAAAc/0LCb_tsTvmU/s46-c-k/photo.jpg" height="17">&nbsp;**Ubuntu**: `sudo apt-get install build-essential`
+ - <img src="http://deluge-torrent.org/images/apple-logo.gif" height="17">&nbsp;**Mac OS X:** [Xcode](https://itunes.apple.com/us/app/xcode/id497799835?mt=12) (or **OS X 10.9 Mavericks**: `xcode-select --install`)
+ - <img src="http://dc942d419843af05523b-ff74ae13537a01be6cfec5927837dcfe.r14.cf1.rackcdn.com/wp-content/uploads/windows-8-50x50.jpg" height="17">&nbsp;**Windows:** [Visual Studio](http://www.visualstudio.com/downloads/download-visual-studio-vs#d-express-windows-8)
+ - <img src="https://lh5.googleusercontent.com/-2YS1ceHWyys/AAAAAAAAAAI/AAAAAAAAAAc/0LCb_tsTvmU/s46-c-k/photo.jpg" height="17">&nbsp;**Ubuntu** / <img src="https://upload.wikimedia.org/wikipedia/commons/3/3f/Logo_Linux_Mint.png" height="17">&nbsp;**Linux Mint:** `sudo apt-get install build-essential`
  - <img src="http://i1-news.softpedia-static.com/images/extra/LINUX/small/slw218news1.png" height="17">&nbsp;**Fedora**: `sudo dnf groupinstall "Development Tools"`
- - <img src="https://en.opensuse.org/images/b/be/Logo-geeko_head.png" height="17">&nbsp;**OpenSUSE**: `sudo zypper install --type pattern devel_basis`
+ - <img src="https://en.opensuse.org/images/b/be/Logo-geeko_head.png" height="17">&nbsp;**OpenSUSE:** `sudo zypper install --type pattern devel_basis`
 
 **Note:** If you are new to Node or Express, I recommend to watch
-[Node.js and Express 101](http://www.youtube.com/watch?v=BN0JlMZCtNU)
+[Node.js and Express 101](https://www.youtube.com/watch?v=BN0JlMZCtNU)
 screencast by Alex Ford that teaches Node and Express from scratch. Alternatively,
 here is another great tutorial for complete beginners - [Getting Started With Node.js, Express, MongoDB](http://cwbuecheler.com/web/tutorials/2013/node-express-mongo/).
 
@@ -111,14 +110,15 @@ The easiest way to get started is to clone the repository:
 
 ```bash
 # Get the latest snapshot
-$ git clone https://github.com/sahat/hackathon-starter.git myproject
-$ cd myproject
-$ git remote rm origin
+git clone --depth=1 https://github.com/sahat/hackathon-starter.git myproject
+
+# Change directory
+cd myproject
 
 # Install NPM dependencies
-$ npm install
+npm install
 
-$ node app.js
+node app.js
 ```
 
 **Note:** I highly recommend installing [Nodemon](https://github.com/remy/nodemon).
@@ -131,7 +131,7 @@ restart the server each time you make a small change in code. To install, run
 Generator
 ---------
 
-Hackathon Starter Generator is tighly coupled to the project code. As soon as you
+Hackathon Starter Generator is tightly coupled to the project code. As soon as you
 start changing and moving things around, it will probably no longer work as
 expected. That is why it's best to use when you first download the project.
 
@@ -156,7 +156,7 @@ credentials.
 all API examples to get you up and running even faster. But don't forget to update
 them with *your credentials* when you are ready to deploy an app.
 
-<img src="http://images.google.com/intl/en_ALL/images/srpr/logo6w.png" width="200">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Google_2015_logo.svg/1000px-Google_2015_logo.svg.png" width="200">
 - Visit [Google Cloud Console](https://cloud.google.com/console/project)
 - Click on the **Create Project** button
 - Enter *Project Name*, then click on **Create** button
@@ -183,13 +183,17 @@ The same goes for other providers.
 
 <img src="http://www.doit.ba/img/facebook.jpg" width="200">
 - Visit [Facebook Developers](https://developers.facebook.com/)
-- Click **Apps > Create a New App** in the navigation bar
-- Enter *Display Name*, then choose a category, then click **Create app**
+- Click **My Apps**, then select **Add a New App* from the dropdown menu
+- Select **Website** platform and enter a new name for your app
+- Click on the **Create New Facebook App ID** button
+- Choose a **Category** that best describes your app
+- Click on **Create App ID** button
+- In the upper right corner click on **Skip Quick Star**
 - Copy and paste *App ID* and *App Secret* keys into `config/secrets.js`
- - *App ID* is **clientID**, *App Secret* is **clientSecret**
-- Click on *Settings* on the sidebar, then click **+ Add Platform**
+ - **Note:** *App ID* is **clientID**, *App Secret* is **clientSecret**
+- Click on the *Settings* tab in the left nav, then click on **+ Add Platform**
 - Select **Website**
-- Enter `http://localhost:3000` for *Site URL*
+- Enter `http://localhost:3000` under *Site URL*
 
 **Note:** After a successful sign in with Facebook, a user will be redirected back to home page with appended hash `#_=_` in the URL. It is *not* a bug. See this [Stack Overflow](https://stackoverflow.com/questions/7131909/facebook-callback-appends-to-return-url) discussion for ways to handle it.
 
@@ -206,7 +210,7 @@ The same goes for other providers.
 
 <hr>
 
-<img src="https://g.twimg.com/Twitter_logo_blue.png" width="90">
+<img src="https://cdn3.iconfinder.com/data/icons/social-icons-5/607/Twitterbird.png" width="90">
 - Sign in at [https://apps.twitter.com/](https://apps.twitter.com/)
 - Click **Create a new application**
 - Enter your application name, website and description
@@ -220,7 +224,7 @@ The same goes for other providers.
 <hr>
 
 <img src="http://www.danpontefract.com/wp-content/uploads/2014/02/logo-linkedin.png" width="200">
-- Sign in at [LinkedIn Developer Network](http://developer.linkedin.com/)
+- Sign in at [LinkedIn Developer Network](https://developer.linkedin.com/)
 - From the account name dropdown menu select **API Keys**
  - *It may ask you to sign in once again*
 - Click **+ Add New Application** button
@@ -249,13 +253,13 @@ The same goes for other providers.
 <hr>
 
 <img src="https://stripe.com/img/about/logos/logos/black@2x.png" width="200">
-- [Sign up](http://stripe.com) or log into your [dashboard](https://manage.stripe.com)
+- [Sign up](https://stripe.com/) or log into your [dashboard](https://manage.stripe.com)
 - Click on your profile and click on Account Settings
 - Then click on [API Keys](https://manage.stripe.com/account/apikeys)
 - Copy the **Secret Key**. and add this into `config/secrets.js`
 <hr>
 
-<img src="https://www.paypalobjects.com/webstatic/developer/logo_paypal-developer_beta.png" width="200">
+<img src="https://yenniferallulli.com/wp-content/uploads/2015/01/Paypal-Logo-Transparent-png-format-large-size.png" width="200">
 - Visit [PayPal Developer](https://developer.paypal.com/)
 - Log in to your PayPal account
 - Click **Applications > Create App** in the navigation bar
@@ -266,7 +270,7 @@ The same goes for other providers.
 
 <hr>
 
-<img src="https://playfoursquare.s3.amazonaws.com/press/2014/foursquare-logomark.png" width="200">
+<img src="http://33.media.tumblr.com/ffaf0075be879b3ab0b87f0b8bcc6814/tumblr_inline_n965bkOymr1qzxhga.png" width="200">
 - Go to [foursquare for Developers](https://developer.foursquare.com/)
 - Click on **My Apps** in the top menu
 - Click the **Create A New App** button
@@ -323,7 +327,6 @@ The same goes for other providers.
 - Once logged into the dashboard, go to the top right selector and click 'account settings'
 - Under the developers tab, create your access token and copy and paste it into `config/secrets.js`
 
-
 Project Structure
 -----------------
 
@@ -348,6 +351,7 @@ Project Structure
 | **views/partials**/footer.jade     | Footer partial template.                                     |
 | **views**/layout.jade              | Base template.                                               |
 | **views**/home.jade                | Home page template.                                          |
+| .travis.yml                        | [Travis CI](https://travis-ci.org/) integration.                                       |
 | app.js                             | Main application file.                                       |
 | setup.js                           | Tool for removing authentication providers and other things. |
 
@@ -364,22 +368,20 @@ List of Packages
 | ------------------------------- | --------------------------------------------------------------------- |
 | async                           | Utility library that provides asynchronous control flow.              |
 | bcrypt-nodejs                   | Library for hashing and salting user passwords.                       |
-| bitgo                           | Multi-sig Bitcoin wallet API.  |
+| bitgo                           | Multi-sig Bitcoin wallet API.                                         |
 | cheerio                         | Scrape web pages using jQuery-style syntax.                           |
 | clockwork                       | Clockwork SMS API library.                                            |
-| connect-assets                  | Compiles LESS stylesheets, concatenates & minifies JavaScript.        |
 | connect-mongo                   | MongoDB session store for Express.                                    |
-| csso                            | Dependency for connect-assets library to minify CSS.                  |
 | express                         | Node.js web framework.                                                |
-| body-parser                     | Express 4.0 middleware.                                               |
-| cookie-parser                   | Express 4.0 middleware.                                               |
-| express-session                 | Express 4.0 middleware.                                               |
-| morgan                          | Express 4.0 middleware.                                               |
-| multer                          | Express 4.0 middleware.                                               |
-| compression                     | Express 4.0 middleware.                                               |
-| errorhandler                    | Express 4.0 middleware.                                               |
-| method-override                 | Express 4.0 middleware.                                               |
-| serve-favicon                   | Express 4.0 middleware offering favicon serving and caching.          |
+| body-parser                     | Express 4 middleware.                                                 |
+| cookie-parser                   | Express 4 middleware.                                                 |
+| express-session                 | Express 4 middleware.                                                 |
+| morgan                          | Express 4 middleware.                                                 |
+| multer                          | Express 4 middleware.                                                 |
+| compression                     | Express 4 middleware.                                                 |
+| errorhandler                    | Express 4 middleware.                                                 |
+| method-override                 | Express 4 middleware.                                                 |
+| serve-favicon                   | Express 4 middleware offering favicon serving and caching.            |
 | express-flash                   | Provides flash messages for Express.                                  |
 | express-validator               | Easy form validation for Express.                                     |
 | fbgraph                         | Facebook Graph API library.                                           |
@@ -387,12 +389,12 @@ List of Packages
 | jade                            | Template engine for Express.                                          |
 | lastfm                          | Last.fm API library.                                                  |
 | instagram-node                  | Instagram API library.                                                |
-| less                            | LESS compiler. Used implicitly by connect-assets.                     |
 | lob                             | Lob API library                                                       |
 | lusca                           | CSRF middleware.                                                      |
 | mongoose                        | MongoDB ODM.                                                          |
 | node-foursquare                 | Foursquare API library.                                               |
 | node-linkedin                   | LinkedIn API library.                                                 |
+| node-sass-middleware            | Sass middleware compiler.                                                 |
 | nodemailer                      | Node.js library for sending emails.                                   |
 | passport                        | Simple and elegant authentication library for node.js                 |
 | passport-facebook               | Sign-in with Facebook plugin.                                         |
@@ -410,7 +412,6 @@ List of Packages
 | twilio                          | Twilio API library.                                                   |
 | twit                            | Twitter API library.                                                  |
 | lodash                          | Handy JavaScript utlities library.                                    |
-| uglify-js                       | Dependency for connect-assets library to minify JS.                   |
 | validator                       | Used in conjunction with express-validator in **controllers/api.js**. |
 | mocha                           | Test framework.                                                       |
 | chai                            | BDD/TDD assertion library.                                            |
@@ -421,8 +422,8 @@ List of Packages
 
 Useful Tools and Resources
 --------------------------
-- [JSDB.io](http://www.jsdb.io) - The Database of JavaScript Libraries
-- [JS Recipes](http://sahatyalkabov.com/jsrecipes) - JavaScript tutorials for backend and frontend development.
+- [JavaScripting](http://www.javascripting.com/) - The Database of JavaScript Libraries
+- [JS Recipes](http://sahatyalkabov.com/jsrecipes/) - JavaScript tutorials for backend and frontend development.
 - [Jade Syntax Documentation by Example](http://naltatis.github.io/jade-syntax-docs/#attributes) - Even better than official Jade docs.
 - [HTML to Jade converter](http://html2jade.aaron-powell.com) - Extremely valuable when you need to quickly copy and paste HTML snippets from the web.
 - [JavascriptOO](http://www.javascriptoo.com/) - A directory of JavaScript libraries with examples, CDN links, statistics, and videos.
@@ -433,7 +434,7 @@ Recommended Design Resources
 - [Code Guide](http://codeguide.co/) - Standards for developing flexible, durable, and sustainable HTML and CSS.
 - [Bootsnipp](http://bootsnipp.com/) - Code snippets for Bootstrap.
 - [UIBox](http://www.uibox.in) - Curated HTML, CSS, JS, UI components.
-- [Bootstrap Zero](http://bootstrapzero.com/) - Free Bootstrap templates themes.
+- [Bootstrap Zero](https://www.bootstrapzero.com) - Free Bootstrap templates themes.
 - [Google Bootstrap](http://todc.github.io/todc-bootstrap/) - Google-styled theme for Bootstrap.
 - [Font Awesome Icons](http://fortawesome.github.io/Font-Awesome/icons/) - It's already part of the Hackathon Starter, so use this page as a reference.
 - [Colors](http://clrs.cc) - A nicer color palette for the web.
@@ -458,7 +459,7 @@ Recommended Node.js Libraries
 Recommended Client-side Libraries
 ---------------------------------
 
-- [Framework7](http://www.idangero.us/framework7) - Full Featured HTML Framework For Building iOS7 Apps.
+- [Framework7](http://www.idangero.us/framework7/) - Full Featured HTML Framework For Building iOS7 Apps.
 - [InstantClick](http://instantclick.io) - Makes your pages load instantly by pre-loading them on mouse hover.
 - [NProgress.js](https://github.com/rstacruz/nprogress) - Slim progress bars like on YouTube and Medium.
 - [Hover](https://github.com/IanLunn/Hover) - Awesome CSS3 animations on mouse hover.
@@ -470,7 +471,7 @@ Recommended Client-side Libraries
 - [Alertify.js](http://fabien-d.github.io/alertify.js/) - Sweet looking alerts and browser dialogs.
 - [selectize.js](http://brianreavis.github.io/selectize.js/) - Styleable select elements and input tags.
 - [drop.js](http://github.hubspot.com/drop/docs/welcome/) -  Powerful Javascript and CSS library for creating dropdowns and other floating displays.
-- [scrollReveal.js](https://github.com/julianlloyd/scrollReveal.js) - Declarative on-scroll reveal animations.
+- [scrollReveal.js](https://github.com/jlmakes/scrollReveal.js) - Declarative on-scroll reveal animations.
 
 Pro Tips
 --------
@@ -522,71 +523,19 @@ its purpose and behavior. To use it, simply run `node cluster_app.js`.
 As a reminder, if you plan to use `cluster_app.js` instead of `app.js`,
 be sure to indicate that in `package.json` when you are ready to deploy your app.
 
-### What is this Rails 3.1-style asset pipeline that you mentioned under Features?
-This is how you typically define static files inside HTML, Jade or any template
-for that matter:
-
-```jade
-link(href='/css/styles.css', rel='stylesheet')
-script(src='/js/lib/jquery-2.1.0.min.js')
-script(src='/js/lib/bootstrap.min.js')
-script(src='/js/main.js')
-```
-
-Simple enough right? But wouldn't it be nice to have it just like that in
-development mode, but when you deploy your app to production, have it minified
-and concatenated into a single file automatically without any extra effort on
-your part?
-
-```jade
-link(href='/css/styles.css', rel='stylesheet')
-script(src='/js/application.js')
-```
-
-As soon as you start bringing in more JavaScript libraries, the benefits of
-concatenating and minifying JavaScript files will be even greater. Using
-**connect-assets** library, it is  as as simple as declaring these two lines:
-
-```
-!= css('styles')      // expects public/css/styles.less
-!= js('application')  // expects public/js/application.js
-```
-
-**Tip:** We can use `css` and `js` functions in Jade templates because in
-**connect-assets** middleware options we have added this line: `helperContext: app.locals`.
-
-The only thing you need to remember is to define your JavaScript files inside
-`public/js/application.js` using this strange syntax notation (Sprockets-style)
-borrowed from Rails. I know it's an extra thing to learn for someone who has
-never seen Rails asset pipeline before, but in this case, I think benefits
-outweigh the cost.
-
-```js
-//= require lib/jquery-2.1.0.min
-//= require lib/bootstrap.min
-//= require main
-```
-
-Using this approach, when working in development mode, **connect-assets** will
-load each file individually, without minifying or concatenating anything.
-When you deploy your app, it will run in production mode, and so **connect-assets**
-will automatically serve a single concatenated & minified `application.js`.
-For more information see [Sprockets-style concatenation](https://github.com/adunkman/connect-assets/#sprockets-style-concatenation)
-section.
-
 ### I am getting MongoDB Connection Error, how do I fix it?
 That's a custom error message defined in `app.js` to indicate that there was a
 problem connecting to MongoDB:
 
 ```js
 mongoose.connection.on('error', function() {
-  console.error('✗ MongoDB Connection Error. Please make sure MongoDB is running.');
+  console.error('�? MongoDB Connection Error. Please make sure MongoDB is running.');
 });
 ```
 You need to have a MongoDB server running before launching `app.js`. You can
 download MongoDB [here](mongodb.org/downloads), or install it via a package manager.
 <img src="http://dc942d419843af05523b-ff74ae13537a01be6cfec5927837dcfe.r14.cf1.rackcdn.com/wp-content/uploads/windows-8-50x50.jpg" height="17">
-Windows users, read [Install MongoDB on Windows](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/).
+Windows users, read [Install MongoDB on Windows](https://docs.mongodb.org/manual/tutorial/install-mongodb-on-windows/).
 
 **Tip:** If you are always connected to the internet, you could just use
 [MongoLab](https://mongolab.com/) or [Compose](https://www.compose.io/) instead
@@ -597,7 +546,7 @@ of downloading and installing MongoDB locally. You will only need to update the
 Chances are you haven't changed the *Database URI* in `secrets.js`. If `db` is
 set to `localhost`, it will only work on your machine as long as MongoDB is
 running. When you deploy to Heroku, OpenShift or some other provider, you will not have MongoDB
-running on `localhost`. You need to create an account with [MongoLab](http://mongolab.com)
+running on `localhost`. You need to create an account with [MongoLab](https://mongolab.com/)
 or [Compose](https://www.compose.io/), then create a free tier database.
 See [Deployment](#deployment) for more information on how to setup an account
 and a new database step-by-step with MongoLab.
@@ -621,7 +570,7 @@ REST API server.
 ### I don't need a sticky footer, can I delete it?
 Absolutely. But unlike a regular footer there is a bit more work involved.
 First, delete `#wrap` and `#footer` ID selectors and `html, body { height: 100%; }`
-from **styles.less**. Next, delete `#wrap` and `#footer` lines from **layout.jade**
+from **main.less**. Next, delete `#wrap` and `#footer` lines from **layout.jade**
 (By the way, if no element is specified before class or id, Jade assumes it is
 a `div` element). Don't forget to indent everything under `#wrap` to the left
 once, since this project uses two spaces per block indentation.
@@ -636,27 +585,6 @@ reference guide. I have explained my reasons why it could not be merged in
 Run `node setup.js` bundled with Hackathon Starter, then select
 **Email Service** option. It will automatically replace appropriate strings in
 your code. Currently there are three options: SendGrid, Mandrill, and Mailgun.
-
-### Can I use Sass instead of LESS stylesheets?
-Yes you can! Although you will have to manually convert all existing stylesheets
-to Sass, which shouldn't be too hard considering how similar Sass and LESS are.
-Simply rename `styles.less` to `styles.scss` and **connect-assets** will
-automatically use Sass preprocessor.
-
-Your are not limited to just Sass *or* LESS, you could use both if you want to.
-In **layout.jade** simply specify LESS and Sass stylesheets separately:
-```jade
-!= css('styles') # public/css/styles.less
-!= css('my_sass_styles') # public/css/my_sass_styles.scss
-```
-
-And as I already mentioned you do not need to specify the file extension,
-**connect-assets** will automatically figure out which CSS preprocessor to use
-based on the filetype.
-
-**Note:** I did not include `node-sass` module in *package.json*, so you will
-have to install it yourself by running `npm install --save node-sass`.
-
 
 How It Works (mini guides)
 --------------------------
@@ -682,7 +610,9 @@ Let's start from the beginning. For this example I will use [Escape Velocity](ht
 **Note:** For the sake of simplicity I will only consider `index.html`, and skip `left-sidebar.html`,
 `no-sidebar.html`, `right-sidebar.html`.
 
-Move all javascript files from `html5up-escape-velocity/js` to `public/js`. Then move all css files from `html5up-escape-velocity/css` to `public/css`. And finally, move all images from `html5up-escape-velocity/images` to `public/images` (You could move it to the existing **img** folder, but then you would have to manually change every `img` reference). Grab the contents of `index.html` and paste it into [HTML To Jade](http://html2jade.aaron-powell.com/).
+Move all JavaScript files from `html5up-escape-velocity/js` to `public/js`. Then move all CSS files from `html5up-escape-velocity/css` to `public/css`. And finally, move all images from `html5up-escape-velocity/images` to `public/images`. You could move it to the existing **img** folder, but that would require manually changing every `img` reference. Grab the contents of `index.html` and paste it into [HTML To Jade](http://html2jade.aaron-powell.com/).
+
+**Note:** Do not forget to update all the CSS and JS paths accordingly.
 
 Create a new file `escape-velocity.jade` and paste the Jade markup in `views` folder.
 Whenever you see the code `res.render('account/login')` - that means it will search for `views/account/login.jade` file.
@@ -840,7 +770,7 @@ app.get('/books', bookController.getBooks);
 
 ---
 
-**Note:** As of Express 4.0 you can define you routes like so:
+**Note:** As of Express 4.x you can define you routes like so:
 
 ```js
 app.route('/books')
@@ -927,8 +857,8 @@ difficult to maintain everything in a single file.
 That's all there is to it. Express.js is super simple to use.
 Most of the time you will be dealing with other APIs to do the real work:
 [Mongoose](http://mongoosejs.com/docs/guide.html) for querying database, socket.io for sending and receiving messages over websockets,
-sending emails via [Nodemailer](http://www.nodemailer.com/), form validation using [express-validator](https://github.com/ctavan/express-validator) library,
-parsing websites using [Cheerio](https://github.com/MatthewMueller/cheerio), and etc.
+sending emails via [Nodemailer](http://nodemailer.com/), form validation using [express-validator](https://github.com/ctavan/express-validator) library,
+parsing websites using [Cheerio](https://github.com/cheeriojs/cheerio), and etc.
 
 <hr>
 
@@ -1013,7 +943,7 @@ almost never include inline JavaScript inside templates anymore.
 
 But it's also understandable if you want take the easier road.
 Most of the time you don't even care about performance during hackathons, you just
-want to [*"get shit done"*](http://www.startupvitamins.com/media/products/13/aaron_levie_poster_black.jpg) before the time runs out.
+want to [*"get shit done"*](https://www.startupvitamins.com/media/products/13/aaron_levie_poster_black.jpg) before the time runs out.
 Well, either way, use whichever approach makes more sense to you. At the end of the day,
 it's **what** you build that matters, not **how** you build it.
 
@@ -1090,7 +1020,7 @@ User
 Let's suppose that each user has a `votes` field and you would like to count
 the total number of votes in your database across all users. One very
 inefficient way would be to loop through each document and manually accumulate
-the count. Or you could use [MongoDB Aggregation Framework](http://docs.mongodb.org/manual/core/aggregation-introduction/) instead:
+the count. Or you could use [MongoDB Aggregation Framework](https://docs.mongodb.org/manual/core/aggregation-introduction/) instead:
 
 ```js
 User.aggregate({ $group: { _id: null, total: { $sum: '$votes' } } }, function(err, votesCount) {
@@ -1116,7 +1046,7 @@ listed below.
 - Download and install [Heroku Toolbelt](https://toolbelt.heroku.com/)
 - In terminal, run `heroku login` and enter your Heroku credentials
 - From *your app* directory run `heroku create`
-- Run `heroku addons:add mongolab` to set up Mongo and configure your environment variables
+- Run `heroku addons:create mongolab`.  This will set up the MongoLab add-on and configure the `MONGOLAB_URI` environment variable in your Heroku app for you.
 - Lastly, do `git push heroku master`.  Done!
 
 **Note:** To install Heroku add-ons your account must be verified.
@@ -1147,11 +1077,11 @@ listed below.
 <img src="http://www.opencloudconf.com/images/openshift_logo.png" width="200">
 - First, install this Ruby gem: `sudo gem install rhc` :gem:
 - Run `rhc login` and enter your OpenShift credentials
-- From *your app* directory run `rhc app create MyApp nodejs-0.10`
- - **Note:** *MyApp* is what you want to name your app (no spaces)
+- From your app directory run `rhc app create MyApp nodejs-0.10`
+ - **Note:** *MyApp* is the name your app (no spaces)
 - Once that is done, you will be provided with **URL**, **SSH** and **Git Remote** links
-- Visit that **URL** and you should see *Welcome to your Node.js application on OpenShift* page
-- Copy **Git Remote** and paste it into `git remote add openshift your_git_remote`
+- Visit provided **URL** and you should see the *Welcome to your Node.js application on OpenShift* page
+- Copy and and paste **Git Remote** into `git remote add openshift YOUR_GIT_REMOTE`
 - Before you push your app, you need to do a few modifications to your code
 
 Add these two lines to `app.js`, just place them anywhere before `app.listen()`:
@@ -1163,7 +1093,7 @@ var PORT = process.env.OPENSHIFT_NODEJS_PORT || 8080;
 Then change `app.listen()` to:
 ```js
 app.listen(PORT, IP_ADDRESS, function() {
-  console.log("✔ Express server listening on port %d in %s mode", PORT, app.settings.env);
+  console.log("�? Express server listening on port %d in %s mode", PORT, app.settings.env);
 });
 ```
 Add this to `package.json`, after *name* and *version*. This is necessary because, by default, OpenShift looks for `server.js` file. And by specifying `supervisor app.js` it will automatically restart the server when node.js process crashes.
@@ -1175,13 +1105,13 @@ Add this to `package.json`, after *name* and *version*. This is necessary becaus
 },
 ```
 
-- Finally, now you can push your code to OpenShift by running `git push -f openshift master`
- - **Note:** The first time you run this command, you have to pass `-f` (force) flag because OpenShift creates a dummy server with the welcome page when you create a new Node.js app. Passing `-f` flag will override everything with your *Hackathon Starter* project repository. Please **do not** do `git pull` as it will create unnecessary merge conflicts.
+- Finally, you can now push your code to OpenShift by running `git push -f openshift master`
+ - **Note:** The first time you run this command, you have to pass `-f` (force) flag because OpenShift creates a dummy server with the welcome page when you create a new Node.js app. Passing `-f` flag will override everything with your *Hackathon Starter* project repository. **Do not** run `git pull` as it will create unnecessary merge conflicts.
 - And you are done!
 
-<img src="http://upload.wikimedia.org/wikipedia/commons/f/ff/Windows_Azure_logo.png" width="200">
+<img src="https://upload.wikimedia.org/wikipedia/commons/f/ff/Windows_Azure_logo.png" width="200">
 
-- Login to [Windows Azure Management Portal](http://manage.windowsazure.com/)
+- Login to [Windows Azure Management Portal](https://manage.windowsazure.com/)
 - Click the **+ NEW** button on the bottom left of the portal
 - Click **COMPUTE**, then **WEB APP**, then **QUICK CREATE**
 - Enter a name for **URL** and select the datacenter **REGION** for your web site
@@ -1217,6 +1147,29 @@ Also, be sure to check out the [Jump-start your hackathon efforts with DevOps Se
 
 Changelog
 ---------
+
+### 3.2.0 (October 19, 2015)
+- Added Google Analytics script.
+- Split *api.js* `require` intro declaration and initialization for better performance. (See <a href="https://github.com/sahat/hackathon-starter/issues/247">#247</a>)
+- Removed [ionicons](http://ionicons.com).
+- Removed [connect-assets](https://github.com/adunkman/connect-assets). (Replaced by [node-sass-middleware](https://github.com/sass/node-sass-middleware))
+- Fixed alignment styling on /login, /profile and /account
+- Fixed Stripe API `POST` request.
+- Converted LESS to Sass stylesheets.
+- Set `node_js` version to "stable" in *.travis.yml*.
+- Removed `mocha.opts` file, pass options directly to package.json
+- README cleanup and fixes.
+- Updated Font Awesome to 4.4.0
+
+### 3.1.0 (August 25, 2015)
+- Added Bitcore example.
+- Added Bitgo example.
+- Lots of README fixes.
+- Fixed Google OAuth profile image url.
+- Fixed a bug where `connect-assets` served all JS assets twice.
+- Fixed missing `csrf` token in the Twilio API example form.
+- Removed `multer` middleware.
+- Removed Ordrx API. (Shutdown)
 
 ### 3.0.3 (May 14, 2015)
 - Added favicon.
@@ -1346,7 +1299,7 @@ Changelog
 - Check if email address is already taken when creating a new local account
  - Previously relied on Validation Error 11000, which doesn't always work
 - When creating a local account, checks if e-mail address is already taken
-- Flash notifications can now be dismissed by clicking on ×
+- Flash notifications can now be dismissed by clicking on �?
 
 ### 2.0.2 (April 22, 2014)
 - Added Instagram Authentication

@@ -21,7 +21,7 @@
 
 module.exports = {
 
-  db: process.env.MONGODB || 'mongodb://localhost:27017/test',
+  db: process.env.MONGODB || process.env.MONGOLAB_URI || 'mongodb://localhost:27017/test',
 
   sessionSecret: process.env.SESSION_SECRET || 'Your Session Secret goes here',
 
@@ -88,7 +88,7 @@ module.exports = {
     clientID: process.env.LINKEDIN_ID || '77chexmowru601',
     clientSecret: process.env.LINKEDIN_SECRET || 'szdC8lN2s2SuMSy8',
     callbackURL: process.env.LINKEDIN_CALLBACK_URL || 'http://localhost:3000/auth/linkedin/callback',
-    scope: ['r_fullprofile', 'r_emailaddress', 'r_network'],
+    scope: ['r_basicprofile', 'r_emailaddress'],
     passReqToCallback: true
   },
 
@@ -143,4 +143,5 @@ module.exports = {
   bitgo: {
     accessToken: process.env.BITGO_ACCESS_TOKEN || '4fca3ed3c2839be45b03bbd330e5ab1f9b3989ddd949bf6b8765518bc6a0e709'
   }
+
 };

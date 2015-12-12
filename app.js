@@ -11,7 +11,6 @@ var logger = require('morgan');
 var errorHandler = require('errorhandler');
 var lusca = require('lusca');
 var methodOverride = require('method-override');
-var multer  = require('multer');
 
 var _ = require('lodash');
 var MongoStore = require('connect-mongo')(session);
@@ -20,7 +19,8 @@ var path = require('path');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var expressValidator = require('express-validator');
-var connectAssets = require('connect-assets');
+var sass = require('node-sass-middleware');
+
 
 /**
  * Controllers (route handlers).
@@ -46,7 +46,8 @@ var app = express();
  */
 mongoose.connect(secrets.db);
 mongoose.connection.on('error', function() {
-  console.error('MongoDB Connection Error. Please make sure that MongoDB is running.');
+  console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
+  process.exit(1);
 });
 
 /**
@@ -56,14 +57,16 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(compress());
-app.use(connectAssets({
-  paths: [path.join(__dirname, 'public/css'), path.join(__dirname, 'public/js')]
+app.use(sass({
+  src: path.join(__dirname, 'public'),
+  dest: path.join(__dirname, 'public'),
+  debug: true,
+  outputStyle: 'expanded'
 }));
 app.use(logger('dev'));
-app.use(favicon(path.join(__dirname, 'public/favicon.png')));
+app.use(favicon(path.join(__dirname, 'public', 'favicon.png')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(multer({ dest: path.join(__dirname, 'uploads') }));
 app.use(expressValidator());
 app.use(methodOverride());
 app.use(cookieParser());
@@ -86,10 +89,13 @@ app.use(function(req, res, next) {
   next();
 });
 app.use(function(req, res, next) {
-  if (/api/i.test(req.path)) req.session.returnTo = req.path;
+  if (/api/i.test(req.path)) {
+    req.session.returnTo = req.path;
+  }
   next();
 });
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
+
 
 /**
  * Primary app routes.
@@ -188,6 +194,7 @@ app.get('/auth/venmo', passport.authorize('venmo', { scope: 'make_payments acces
 app.get('/auth/venmo/callback', passport.authorize('venmo', { failureRedirect: '/api' }), function(req, res) {
   res.redirect('/api/venmo');
 });
+
 
 /**
  * Error Handler.
