@@ -1,0 +1,13 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.12.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:http-signature:20150122':
+    - bitgo > chain-node > request > http-signature:
+        patched: '2018-07-02T23:20:35.609Z'
+    - yui > request > http-signature:
+        patched: '2018-07-02T23:20:35.609Z'
+  'npm:lodash:20180130':
+    - connect-assets > mincer > lodash:
+        patched: '2018-07-02T23:20:35.609Z'
