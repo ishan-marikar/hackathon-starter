@@ -7,7 +7,9 @@
   },
   "scripts": {
     "start": "node app.js",
-    "test": "mocha --reporter spec --timeout 5000"
+    "test": "mocha --reporter spec --timeout 5000",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "dependencies": {
     "async": "^1.5.0",
@@ -57,7 +59,8 @@
     "twilio": "^2.6.0",
     "twit": "^2.1.1",
     "validator": "^4.4.0",
-    "yui": "^3.18.1"
+    "yui": "^3.18.1",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "blessed": "^0.1.81",
@@ -66,5 +69,6 @@
     "multiline": "^1.0.2",
     "supertest": "^1.1.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "snyk": true
 }
